@@ -1,114 +1,333 @@
--- --------------------------------------------------------
--- Host:                         127.0.0.1
--- Server version:               8.0.30 - MySQL Community Server - GPL
--- Server OS:                    Win64
--- HeidiSQL Version:             12.8.0.6908
--- --------------------------------------------------------
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jan 07, 2025 at 05:48 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
-/*!50503 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
--- Dumping structure for table pos.categories
-CREATE TABLE IF NOT EXISTS `categories` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nama_kategori` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+--
+-- Database: `pos`
+--
 
--- Dumping data for table pos.categories: ~4 rows (approximately)
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` int(11) NOT NULL,
+  `nama_kategori` varchar(191) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
 INSERT INTO `categories` (`id`, `nama_kategori`) VALUES
-	(1, 'Buku dan Alat Tulis'),
-	(2, 'Seragam'),
-	(3, 'Makanan'),
-	(4, 'ATK');
+(1, 'Buku dan Alat Tulis'),
+(14, 'Seragam'),
+(15, 'Print Out');
 
--- Dumping structure for table pos.products
-CREATE TABLE IF NOT EXISTS `products` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `kode` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `nama_produk` varchar(191) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `category_id` int DEFAULT NULL,
-  `stok` int DEFAULT NULL,
-  `harga` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `category_id` (`category_id`),
-  KEY `stok` (`stok`),
-  KEY `kode` (`kode`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- --------------------------------------------------------
 
--- Dumping data for table pos.products: ~4 rows (approximately)
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `kode` varchar(191) NOT NULL,
+  `nama_produk` varchar(191) DEFAULT NULL,
+  `category_id` int(11) DEFAULT NULL,
+  `stok` int(11) DEFAULT NULL,
+  `harga` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products`
+--
+
 INSERT INTO `products` (`id`, `kode`, `nama_produk`, `category_id`, `stok`, `harga`) VALUES
-	(1, 'B001', 'buku tulis', 2, 16, 5000),
-	(2, 'P001', 'pensil', 1, 20, 3000),
-	(3, 'P002', 'penghapus', 1, 29, 2000),
-	(4, 'P003', 'pulpen', 1, 50, 4000);
+(1, 'B001', 'buku tulis', 2, 16, 5000),
+(2, 'ATKA0010A', 'AMPLOP (KECIL) PAPERLINE 104 POLOS', 1, 5, 500),
+(3, 'ATKA0020A', 'AMPLOP (PANJANG) MERPATI 90 POLOS ', 1, 10, 500),
+(4, 'ATKA0030A', 'BAK STEMPEL ', 1, 10, 8500),
+(5, 'ATKA0040A', 'BOX FILE ', 1, 10, 22500),
+(6, 'ATKA0050A', 'BUKU CAMPUS ISI 38 LBR', 1, 10, 6500),
+(7, 'ATKA0060A', 'BUKU CAMPUS ISI 50 LBR', 1, 10, 7500),
+(8, 'ATKA0070A', 'BUKU FOLIO SUKHOI (BUKU BESAR)', 1, 10, 25000),
+(9, 'ATKA0080A', 'BUKU SIDU ISI 38 LBR', 1, 10, 4500),
+(10, 'ATKA0090A', 'BUKU SIDU ISI 58 LBR', 1, 10, 6000),
+(11, 'ATKA0100A', 'BUSSINESS FILE (SEMUA WARNA)', 1, 10, 4500),
+(12, 'ATK0010B', 'CORRECTION TAPE (CT) JOYKO ', 1, 10, 7000),
+(13, 'ATK0020B', 'CUTTER AMANDA BESAR', 1, 10, 3000),
+(14, 'ATK0030B', 'CUTTER AMANDA KECIL', 1, 10, 2000),
+(15, 'ATK0040B', 'DOUBLE TAPE 1 INCH ', 1, 10, 7500),
+(16, 'ATK0050B', 'DOUBLE TAPE 1/2 INCH ', 1, 10, 4000),
+(17, 'ATK0060B', 'GUNTING YAMATA 140 KECIL ', 1, 10, 4000),
+(18, 'ATK0070B', 'GUNTING YAMATA 160 BESAR ', 1, 10, 5000),
+(19, 'ATK0080B', 'STABILO/TEKS LINER/HIGHLIGHTER JOYKO HL 1-5', 1, 10, 6000),
+(20, 'ATK0090B', 'ISI STAPLER JOYKO NO.10 ', 1, 10, 2000),
+(21, 'ATK0100B', 'ISI STEMPEL ', 1, 10, 7000),
+(22, 'ATK0010C', 'ISOLASI DAIMARU 1 INCH ', 1, 10, 8000),
+(23, 'ATK0020C', 'ISOLASI DAIMARU 1/2 INCH ', 1, 10, 4000),
+(24, 'ATK0030C', 'ISOLASI GOLDTAPE ', 1, 10, 1500),
+(25, 'ATK0040C', 'ISOLASI HOLOGRAM GAMBAR KECIL 1/2 INCH ', 1, 10, 1500),
+(26, 'ATK0050C', 'ISOLASI NACHI 1/2 X 25 YELOW ', 1, 10, 2500),
+(27, 'ATK0060C', 'KARTON BIASA (SEMUA WARNA)', 1, 10, 3500),
+(28, 'ATK0070C', 'KARTON MANILA ', 1, 10, 3000),
+(29, 'ATK0080C', 'KERTAS A4 70 GR ', 1, 10, 250),
+(30, 'ATK0090C', 'KERTAS F4 70 GR ', 1, 10, 250),
+(31, 'ATK0100C', 'KERTAS F4/A4 70 GR (SEMUA WARNA) ', 1, 10, 500),
+(32, 'ATK0010D', 'KERTAS FOLIO BERGARIS SIDU ', 1, 10, 500),
+(33, 'ATKD0020D', 'KERTAS KADO KIKY BATIK ', 1, 10, 1500),
+(34, 'ATKD0030D', 'KERTAS KADO SIDU', 1, 10, 1500),
+(35, 'ATKD0040D', 'KERTAS LABEL', 1, 10, 1000),
+(36, 'ATKD0050D', 'KERTAS MAS METALIC (SEMUA WARNA)', 1, 10, 2000),
+(37, 'ATKD0060D', 'KERTAS SPOTLIGHT 40 X 60', 1, 10, 2500),
+(38, 'ATKD0070D', 'KUITANSI PAPERLINE BESAR ', 1, 10, 5000),
+(39, 'ATKD0080D', 'KUITANSI PAPERLINE KECIL', 1, 10, 3500),
+(40, 'ATKD0090D', 'LAKBAN DAIMARU BENING', 1, 10, 15500),
+(41, 'ATKD0100D', 'LAKBAN DAIMARU COKELAT ', 1, 10, 15500),
+(42, 'ATKE0010E', 'LEM CAIR JOYKO 35ML', 1, 10, 2500),
+(43, 'ATKE0020E', 'LEM STICK JOYKO GS-09 8 GR ', 1, 10, 3500),
+(44, 'ATKE0030E', 'LEM STICK JOYKO GS-15 15 GR ', 1, 9, 5000),
+(45, 'ATKE0040E', 'MAP DIAMOND', 1, 9, 1500),
+(46, 'ATKE0050E', 'MAP KABITA ', 1, 9, 1000),
+(47, 'ATKE0060E', 'NOTA 1 PLY ', 1, 10, 3000),
+(48, 'ATKE0070E', 'NOTA 2 PLY ', 1, 10, 4500),
+(49, 'ATKE0080E', 'NOTA PAPERLINE KECIL ', 1, 10, 3500),
+(50, 'ATKE0090E', 'ODNER F4', 1, 10, 26000),
+(51, 'ATKE0100E', 'ORIGAMI BESAR', 1, 10, 13000),
+(52, 'ATKF0010F', 'ORIGAMI KECIL', 1, 10, 8000),
+(53, 'ATKF0020F', 'PENGGARIS BUTTERFLY 20 CM ', 1, 10, 2500),
+(54, 'ATKF0030F', 'PENGGARIS BUTTERFLY 30 CM ', 1, 10, 3000),
+(55, 'ATKF0040F', 'PENGHAPUS JOYKO PUTIH ', 1, 10, 1500),
+(56, 'ATKF0050F', 'PENSIL FABER CASTLE 2B', 1, 10, 5500),
+(57, 'ATKF0060F', 'PERFORATOR JOYKO', 1, 10, 16000),
+(58, 'ATKF0070F', 'PLASTIK LAMINATING A4', 1, 10, 1500),
+(59, 'ATKF0080F', 'PLASTIK LAMINATING F4', 1, 10, 2000),
+(60, 'ATKF0090F', 'PRONTO MARK&NOTTE 6 CLR', 1, 9, 13000),
+(61, 'ATKF0100F', 'PULPEN BOLPUNKU SPIRAL', 1, 10, 1500),
+(62, 'ATKG0010G', 'PULPEN BP 213 QUACO', 1, 10, 5500),
+(63, 'ATKG0020G', 'PULPEN JOYKO BP 184 CULTURE/ BATIK', 1, 10, 3500),
+(64, 'ATKG0030G', 'PULPEN BP JOYKO BP-213 QUACO 4 WARNA', 1, 10, 6000),
+(65, 'ATKG0040G', 'PULPEN BP JOYKO GEL GP-100', 1, 10, 2500),
+(66, 'ATKG0050G', 'PULPEN BP JOYKO GEL GP-100 NT', 1, 10, 2500),
+(67, 'ATKG0060G', 'PULPEN BP JOYCO SHOKYO GEL GP 322', 1, 10, 3500),
+(68, 'ATKG0070G', 'PULPEN BP JOYCO SHOKYO-6 GP 333', 1, 10, 4000),
+(69, 'ATKG0080G', 'PULPEN BP JOYKO OVAL GEL GP-189', 1, 10, 3000),
+(70, 'ATKG0090G', 'PULPEN BP JOYKO GEL GP-262', 1, 10, 2500),
+(71, 'ATKG0100G', 'PULPEN BP JOYKO GEL GP-330', 1, 10, 2500),
+(72, 'ATKH0010H', 'PULPEN BP JOYKO GEL GP-378', 1, 10, 2000),
+(73, 'ATKH0020H', 'PULPEN BP JOYKO Q GEL GP-265', 1, 10, 3500),
+(74, 'ATKH0030H', 'PULPEN BP JOYKO VOCUS BP 338', 1, 10, 2000),
+(75, 'ATKH0040H', 'PULPEN BP KENKO EASY GEL 0,5 mm', 1, 10, 3000),
+(76, 'ATKH0050H', 'PULPEN BP KENKO JELLER K-1', 1, 10, 4500),
+(77, 'ATKH0060H', 'PULPEN ZEBRA KOKORO SWEET GEL', 1, 10, 7000),
+(78, 'ATKH0070H', 'PULPEN BP STANDART AE-7 (SEMUA WARNA)', 1, 10, 2500),
+(79, 'ATKH0080H', 'PULPEN FASTER C-600 TUTUP ', 1, 10, 3000),
+(80, 'ATKH0090H', 'PULPEN JOYKO SHOKYO GEL ', 1, 10, 5000),
+(81, 'ATKH0100H', 'RAUTAN JOYKO 362 ', 1, 10, 2000),
+(82, 'ATKI0010I', 'RAUTAN JOYKO B-23 TABUNG', 1, 10, 3000),
+(83, 'ATKI0020I', 'STEREFOM PUTIH', 1, 7, 6000),
+(84, 'ATKI0030I', 'STEREFOM WARNA', 1, 9, 7500),
+(85, 'ATKI0040I', 'SAMPUL COKELAT BUKU BESAR', 1, 9, 500),
+(86, 'ATKI0050I', 'SAMPUL COKELAT BUKU KECIL', 1, 10, 1000),
+(87, 'ATKI0060I', 'SAMPUL LKS PLASTIK', 1, 10, 1500),
+(88, 'ATKI0070I', 'SPIDOL SNOWMAN KECIL', 1, 10, 2000),
+(89, 'ATKI0080I', 'SPIDOL SNOWMAN WHITEBOARD ', 1, 10, 10000),
+(90, 'ATKI0090I', 'SPIDOL SOWMAN KECIL 1 SET ', 1, 10, 18500),
+(91, 'ATKI0100I', 'STAPLER JOYKO HD-10 CL', 1, 10, 10500),
+(92, 'ATKJ0010J', 'STAPLER JOYKO MINI HD-10 CL', 1, 10, 10000),
+(93, 'ATKJ0020J', 'STEMPEL OTOMATIS ', 1, 10, 32500),
+(94, 'ATKJ0030J', 'STICK NOTES ', 1, 10, 6500),
+(95, 'ATKJ0040J', 'STICK NOTES T&J FLAGS TJ-P7A', 1, 10, 8000),
+(96, 'ANKJ0050J', 'SNALHECTER', 1, 10, 4500),
+(97, 'APKJ0060J', 'SPIDOL SNOWMAN KECIL', 1, 10, 2000),
+(98, 'APKJ0070J', 'SPIDOL SNOWMAN WHITEBOARD ', 1, 10, 10000),
+(99, 'ATKJ0080J', 'STAPLER JOYKO HD-10 CL', 1, 10, 10500),
+(100, 'ATKJ0090J', 'STAPLER JOYKO MINI HD-10 CL', 1, 10, 10000),
+(101, 'ATKJ0100J', 'STEMPEL OTOMATIS ', 1, 10, 32500),
+(102, 'ATKJ0101J', 'STICK NOTES ', 1, 10, 6500),
+(103, 'ATKJ0010J', 'TINTA SPRIDOL SOWNMAN WHITEBOARD', 1, 10, 20000),
+(104, 'ATKJ0020J', 'TIPE EX JOYKO ', 1, 10, 6000),
+(105, 'ATKJ0030J', 'Tipe Ex Kenko', 1, 10, 7000),
+(106, 'ATK0010B', 'CORRECTION TAPE (CT) JOYKO ', 1, 1, 7000),
+(107, 'ATK0020B', 'CUTTER AMANDA BESAR', 1, 1, 3000),
+(108, 'ATK0030B', 'CUTTER AMANDA KECIL', 1, 1, 2000),
+(109, 'ATK0040B', 'DOUBLE TAPE 1 INCH ', 1, 1, 7500),
+(110, 'ATK0050B', 'DOUBLE TAPE 1/2 INCH ', 1, 1, 4000),
+(111, 'ATK0060B', 'GUNTING YAMATA 140 KECIL ', 1, 1, 4000),
+(112, 'ATK0070B', 'GUNTING YAMATA 160 BESAR ', 1, 1, 5000),
+(113, 'ATK0080B', 'STABILO/TEKS LINER/HIGHLIGHTER JOYKO HL 1-5', 1, 1, 6),
+(114, 'ATK0090B', 'ISI STAPLER JOYKO NO.10 ', 1, 1, 2000),
+(115, 'ATK0100B', 'ISI STEMPEL ', 1, 1, 7000),
+(116, 'ATK0010C', 'ISOLASI DAIMARU 1 INCH ', 1, 1, 8000),
+(117, 'ATK0020C', 'ISOLASI DAIMARU 1/2 INCH ', 1, 1, 4000),
+(118, 'ATK0030C', 'ISOLASI GOLDTAPE ', 1, 1, 1500),
+(119, 'ATK0040C', 'ISOLASI HOLOGRAM GAMBAR KECIL 1/2 INCH ', 1, 1, 1500),
+(120, 'ATK0050C', 'ISOLASI NACHI 1/2 X 25 YELOW ', 1, 1, 2500),
+(121, 'ATK0060C', 'KARTON BIASA (SEMUA WARNA)', 1, 1, 3500),
+(122, 'ATK0080C', 'KERTAS A4 70 GR ', 1, 1, 250),
+(123, 'ATK0090C', 'KERTAS F4 70 GR ', 1, 1, 250),
+(124, 'ATK0100C', 'KERTAS F4/A4 70 GR (SEMUA WARNA) ', 1, 1, 500),
+(125, 'ATK0010D', 'KERTAS FOLIO BERGARIS SIDU ', 1, 1, 500),
+(126, 'ATKD0020D', 'KERTAS KADO KIKY BATIK ', 1, 1, 1500),
+(127, 'ATKD0030D', 'KERTAS KADO SIDU', 1, 1, 1500),
+(128, 'ATKD0040D', 'KERTAS LABEL', 1, 1, 1000),
+(129, 'ATKD0050D', 'KERTAS MAS METALIC (SEMUA WARNA)', 1, 1, 2000),
+(130, 'ATKD0060D', 'KERTAS SPOTLIGHT 40 X 60', 1, 1, 2500),
+(131, 'ATKD0070D', 'KUITANSI PAPERLINE BESAR ', 1, 1, 5000),
+(132, 'ATKD0080D', 'KUITANSI PAPERLINE KECIL', 1, 1, 3500),
+(133, 'ATKD0090D', 'LAKBAN DAIMARU BENING', 1, 1, 15500),
+(134, 'ATKD0100D', 'LAKBAN DAIMARU COKELAT ', 1, 1, 15500);
 
--- Dumping structure for table pos.transactions
-CREATE TABLE IF NOT EXISTS `transactions` (
-  `id` int NOT NULL AUTO_INCREMENT,
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id` int(11) NOT NULL,
   `tanggal` date DEFAULT NULL,
-  `total` int DEFAULT NULL,
-  `user_id` int DEFAULT NULL,
-  `created_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `total` (`total`),
-  KEY `user_id` (`user_id`),
-  KEY `tanggal` (`tanggal`),
-  KEY `created_at` (`created_at`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  `total` int(11) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table pos.transactions: ~2 rows (approximately)
-INSERT INTO `transactions` (`id`, `tanggal`, `total`, `user_id`, `created_at`) VALUES
-	(7, '2024-11-09', 8000, 1, '2024-11-09 08:50:18'),
-	(8, '2024-11-09', 10000, 1, '2024-11-09 08:54:26'),
-	(9, '2024-11-09', 12000, 1, '2024-11-09 10:00:19');
+-- --------------------------------------------------------
 
--- Dumping structure for table pos.transaction_details
-CREATE TABLE IF NOT EXISTS `transaction_details` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `transaction_id` int DEFAULT NULL,
-  `product_id` int DEFAULT NULL,
-  `product_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `harga` int DEFAULT NULL,
-  `jumlah` int DEFAULT NULL,
-  `subtotal` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `transaction_id` (`transaction_id`),
-  KEY `product_id` (`product_id`),
-  KEY `jumlah` (`jumlah`),
-  KEY `subtotal` (`subtotal`),
-  KEY `harga` (`harga`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+--
+-- Table structure for table `transaction_details`
+--
 
--- Dumping data for table pos.transaction_details: ~4 rows (approximately)
-INSERT INTO `transaction_details` (`id`, `transaction_id`, `product_id`, `product_name`, `harga`, `jumlah`, `subtotal`) VALUES
-	(12, 7, 2, 'pensil', 3000, 2, 6000),
-	(13, 7, 3, 'penghapus', 2000, 1, 2000),
-	(14, 8, 1, 'buku tulis', 5000, 2, 10000),
-	(15, 9, 1, 'buku tulis', 5000, 2, 10000),
-	(16, 9, 3, 'penghapus', 2000, 1, 2000);
+CREATE TABLE `transaction_details` (
+  `id` int(11) NOT NULL,
+  `transaction_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `product_name` varchar(191) DEFAULT NULL,
+  `harga` int(11) DEFAULT NULL,
+  `jumlah` int(11) DEFAULT NULL,
+  `subtotal` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping structure for table pos.users
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+-- --------------------------------------------------------
 
--- Dumping data for table pos.users: ~0 rows (approximately)
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(191) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
 INSERT INTO `users` (`id`, `username`, `password`) VALUES
-	(1, 'admin', '$2y$10$LH9U0M.Udw.EXPi8Cwcik.klrI9iquLGcXnMKA5Uc7njKgikWmYuy');
+(1, 'admin', '$2y$10$LH9U0M.Udw.EXPi8Cwcik.klrI9iquLGcXnMKA5Uc7njKgikWmYuy'),
+(2, 'Kasir', '$2y$10$O3sYUAVTUpD67orpRlMcTOpgIuBRE1d7VZREa6n2xeBMgOT/a/hvq');
 
-/*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
-/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
-/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `stok` (`stok`),
+  ADD KEY `kode` (`kode`);
+
+--
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `total` (`total`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `tanggal` (`tanggal`),
+  ADD KEY `created_at` (`created_at`);
+
+--
+-- Indexes for table `transaction_details`
+--
+ALTER TABLE `transaction_details`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `transaction_id` (`transaction_id`),
+  ADD KEY `product_id` (`product_id`),
+  ADD KEY `jumlah` (`jumlah`),
+  ADD KEY `subtotal` (`subtotal`),
+  ADD KEY `harga` (`harga`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `username` (`username`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `transaction_details`
+--
+ALTER TABLE `transaction_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
