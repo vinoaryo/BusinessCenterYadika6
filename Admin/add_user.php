@@ -1,5 +1,5 @@
 <?php
-
+require "../System/init.php";
 require "../Database/connection.php";
 
 header("Content-type: text/plain");

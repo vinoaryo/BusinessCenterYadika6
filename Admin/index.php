@@ -1,6 +1,5 @@
 <?php
-
-session_start();
+require "../System/init.php";
 
 if (isset($isAdmin) and $isAdmin === false) {
     return header("Location: ./");

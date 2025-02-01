@@ -1,5 +1,5 @@
 <?php
-
+require "../System/init.php";
 require "../Database/connection.php";
 
 $id = $_GET['id'];
