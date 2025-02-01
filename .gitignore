@@ -1,0 +1,21 @@
+# Ignore Composer dependencies and lock file
+/vendor/
+/composer.lock
+
+# Ignore Composer cache
+composer.phar
+/.composer/
+
+# Ignore environment and IDE-specific files
+.env
+.env.local
+.env.*.local
+/.idea/
+/.vscode/
+/nbproject/
+/.DS_Store
+
+# Ignore log and temporary files
+/logs/
+/tmp/
+/cache/
